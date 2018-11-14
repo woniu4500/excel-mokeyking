@@ -20,7 +20,7 @@ public class ExcelFieldInfo {
     private String format;//格式
     private int width;//宽度
     private String defaultValue;//默认值
-    private int[] tags;//标记
+    private int[] group;//标记
     private String mergeTo;//合并到
     private String separator;//分隔符
     private String string;//处理"第3周"类似情况
@@ -33,7 +33,7 @@ public class ExcelFieldInfo {
     }
 
     public ExcelFieldInfo(String name, int order, String format, int width, String defaultValue, Method method, String
-            mergeTo, String separator, String string, int[] tags, HorizontalAlignment align) {
+            mergeTo, String separator, String string, int[] group, HorizontalAlignment align) {
         this.name = name;
         this.order = order;
         this.format = format;
@@ -43,7 +43,7 @@ public class ExcelFieldInfo {
         this.mergeTo = mergeTo;
         this.separator = separator;
         this.string = string;
-        this.tags = tags;
+        this.group = group;
         this.align = align;
     }
 
@@ -79,15 +79,15 @@ public class ExcelFieldInfo {
         this.width = width;
     }
 
-    public int[] getTags() {
-        return tags;
-    }
+    public int[] getGroup() {
+		return group;
+	}
 
-    public void setTags(int[] tags) {
-        this.tags = tags;
-    }
+	public void setGroup(int[] group) {
+		this.group = group;
+	}
 
-    public Method getMethod() {
+	public Method getMethod() {
         return method;
     }
 

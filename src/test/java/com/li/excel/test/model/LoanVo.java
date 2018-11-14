@@ -26,10 +26,10 @@ public class LoanVo {
     @ExcelField(name = "姓名",width = 10)
 	private String name;
 	
-    @ExcelField(name = "手机号码", order = 10, tags = {2, 3}, width = 20)
+    @ExcelField(name = "手机号码", order = 10, group = {2, 3}, width = 20)
 	private String mobile;
 	
-    @ExcelField(name = "证件号码", tags = {1},width = 50)
+    @ExcelField(name = "证件号码", group = {1},width = 50)
 	private String certCode;
 	
     @ExcelField(name = "生日", format = "yyyy-MM-dd", width = 10)

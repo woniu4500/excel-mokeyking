@@ -45,10 +45,10 @@ public class ExcelExportUtil {
     /**
      * @param collection 集合
      * @param clazz      类
-     * @param tag        标记（0标记会忽略）
+     * @param group        标记（0标记会忽略）
      * @return excel
      */
-    public static byte[] writeSingleSheet(Collection<?> collection, int tag, WorkbookType workbookType) throws
+    public static byte[] writeSingleSheet(Collection<?> collection, int group, WorkbookType workbookType) throws
             NoSuchFieldException,
             IllegalAccessException, IntrospectionException, InvocationTargetException {
         //创建workbook上下文
@@ -57,7 +57,7 @@ public class ExcelExportUtil {
         Class<?> clazz = collection.toArray()[0].getClass();
         List<ExcelFieldInfo> fieldInfoList = ReflectionUtil.getFieldInfoList(clazz);
         //处理标记，0则忽略
-        handleTags(tag, fieldInfoList);
+        handlegroup(group, fieldInfoList);
 
         //取得excel表头
         int m=fieldInfoList.size();
@@ -141,10 +141,10 @@ public class ExcelExportUtil {
     /**
      * @param collection 集合
      * @param clazz      类
-     * @param tag        标记（0标记会忽略）
+     * @param group        标记（0标记会忽略）
      * @return excel
      */
-    public static byte[] writeMutiSheet(Collection<?>[] collectionArr, int[] tagArr, WorkbookType workbookType) throws
+    public static byte[] writeMutiSheet(Collection<?>[] collectionArr, int[] groupArr, WorkbookType workbookType) throws
             NoSuchFieldException,
             IllegalAccessException, IntrospectionException, InvocationTargetException {
 
@@ -159,7 +159,7 @@ public class ExcelExportUtil {
             Class<?> clazz = collectionArr[sheetNumber].toArray()[0].getClass();
             List<ExcelFieldInfo> fieldInfoList = ReflectionUtil.getFieldInfoList(clazz);
             //处理标记，0则忽略
-            handleTags(tagArr[sheetNumber], fieldInfoList);
+            handlegroup(groupArr[sheetNumber], fieldInfoList);
 
             //取得excel表头
             int m=fieldInfoList.size();
@@ -243,24 +243,24 @@ public class ExcelExportUtil {
     }
 
     /**
-     * 处理tags标记
+     * 处理group标记
      *
-     * @param tag           标记
+     * @param group           标记
      * @param fieldInfoList field信息列表
      */
-    private static void handleTags(int tag, List<ExcelFieldInfo> fieldInfoList) {
-        //tag为0，表示忽略标记
-        if (tag != 0) {
+    private static void handlegroup(int group, List<ExcelFieldInfo> fieldInfoList) {
+        //group为0，表示忽略标记
+        if (group != 0) {
             Iterator<ExcelFieldInfo> iterator = fieldInfoList.iterator();
             while (iterator.hasNext()) {
                 ExcelFieldInfo fieldInfo = iterator.next();
-                if (fieldInfo.getTags().length == 1 && fieldInfo.getTags()[0] == 0) {
+                if (fieldInfo.getGroup().length == 1 && fieldInfo.getGroup()[0] == 0) {
                     continue;
                 }
-                //如果注解tags里不包含参数tag，则remove掉（不导出）
+                //如果注解group里不包含参数group，则remove掉（不导出）
                 boolean contain = false;
-                for (int tagTemp : fieldInfo.getTags()) {
-                    if (tagTemp == tag) {
+                for (int groupTemp : fieldInfo.getGroup()) {
+                    if (groupTemp == group) {
                         contain = true;
                     }
                 }
@@ -294,12 +294,12 @@ public class ExcelExportUtil {
         return null;
     }
     
-    public static void exportSingleSheetToFile(String filePath,Collection<?> collection,int tag) {
+    public static void exportSingleSheetToFile(String filePath,Collection<?> collection,int group) {
         FileOutputStream fileOutputStream = null;
         try {
         	WorkbookType workbookType = getWorkbookTypeFromPath(filePath);
 			fileOutputStream = new FileOutputStream(filePath);
-			fileOutputStream.write(writeSingleSheet(collection,tag,workbookType));
+			fileOutputStream.write(writeSingleSheet(collection,group,workbookType));
             // flush
             fileOutputStream.flush();
 		} catch (Exception e) {
@@ -317,12 +317,12 @@ public class ExcelExportUtil {
         }
     }
     
-    public static void exportMutiSheetToFile(String filePath,Collection<?>[] collectionArr,int[] tagArr) {
+    public static void exportMutiSheetToFile(String filePath,Collection<?>[] collectionArr,int[] groupArr) {
         FileOutputStream fileOutputStream = null;
     	WorkbookType workbookType = getWorkbookTypeFromPath(filePath);
         try {
 			fileOutputStream = new FileOutputStream(filePath);
-			fileOutputStream.write(writeMutiSheet(collectionArr,tagArr,workbookType));
+			fileOutputStream.write(writeMutiSheet(collectionArr,groupArr,workbookType));
             fileOutputStream.flush();
 		} catch (Exception e) {
             logger.error(e.getMessage(), e);

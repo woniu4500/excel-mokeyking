@@ -29,10 +29,10 @@ public class ExcelUtil {
      * @param filePath
      * @param collection
      * @param clazz
-     * @param tag
+     * @param group
      */
-    public static void exportToFile(String filePath, Collection<?> collection, Class<?> clazz, int tag) {
-    	ExcelExportUtil.exportSingleSheetToFile(filePath,collection,tag);
+    public static void exportToFile(String filePath, Collection<?> collection, Class<?> clazz, int group) {
+    	ExcelExportUtil.exportSingleSheetToFile(filePath,collection,group);
     } 
 
     /**
@@ -40,10 +40,10 @@ public class ExcelUtil {
      * @param filePath
      * @param collectionArr
      * @param clazzArr
-     * @param tag
+     * @param group
      */
-    public static void exportMutiToFile(String filePath, Collection<?>[] collectionArr, int[] tag) {
-    	ExcelExportUtil.exportMutiSheetToFile(filePath,collectionArr,tag);
+    public static void exportMutiToFile(String filePath, Collection<?>[] collectionArr, int[] group) {
+    	ExcelExportUtil.exportMutiSheetToFile(filePath,collectionArr,group);
     } 
     
     /**

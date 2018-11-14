@@ -11,10 +11,10 @@
     @ExcelField(name = "姓名",width = 10)
 	private String name;
 	
-    @ExcelField(name = "手机号码", order = 10, tags = {2, 3}, width = 20)
+    @ExcelField(name = "手机号码", order = 10, group = {2, 3}, width = 20)
 	private String mobile;
 	
-    @ExcelField(name = "证件号码", tags = {1},width = 50)
+    @ExcelField(name = "证件号码", group = {1},width = 50)
 	private String certCode;
 	
     @ExcelField(name = "生日", format = "yyyy-MM-dd", width = 10)
@@ -37,8 +37,8 @@
     
     注解说明：
     name表示列名,format表示格式化,defaultValue表示设置替代默认值,string拼接替代字符串，
-    order表示列的排列顺序，tags表示分组导出（比如你这个类需要根据在不同的需求里导出的字段不同，
-    那么可以根据tags分组导出）
+    order表示列的排列顺序，group表示分组导出（比如你这个类需要根据在不同的需求里导出的字段不同，
+    那么可以根据group分组导出）
     algin调整列的居左居中居右位置，width设置好列宽美化展示
     ExcelField为字段列名注解 ExcelSheet为sheet表格注解
 ```
@@ -48,20 +48,20 @@
      * @param filePath
      * @param collection
      * @param clazz
-     * @param tag
+     * @param group
      */
-    public static void exportToFile(String filePath, Collection<?> collection, Class<?> clazz, int tag) {
-    	ExcelExportUtil.exportSingleSheetToFile(filePath,collection,tag);
+    public static void exportToFile(String filePath, Collection<?> collection, Class<?> clazz, int group) {
+    	ExcelExportUtil.exportSingleSheetToFile(filePath,collection,group);
     } 
 
     /** 导出多个sheet的excel文件
      * @param filePath
      * @param collectionArr
      * @param clazzArr
-     * @param tag
+     * @param group
      */
-    public static void exportMutiToFile(String filePath, Collection<?>[] collectionArr, int[] tag) {
-    	ExcelExportUtil.exportMutiSheetToFile(filePath,collectionArr,tag);
+    public static void exportMutiToFile(String filePath, Collection<?>[] collectionArr, int[] group) {
+    	ExcelExportUtil.exportMutiSheetToFile(filePath,collectionArr,group);
     } 
 ### 从excel读数据对象
 

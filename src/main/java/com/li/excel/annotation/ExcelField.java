@@ -55,9 +55,9 @@ public @interface ExcelField {
     /**
      * 标记用于哪几个导出
      * <p>
-     * 比如A字段只可以在管理员数据时导出，而在用户数据时不导出
+     * 比如不同的业务要求导出不同列的数据
      */
-    int[] tags() default 0;
+    int[] group() default 0;
 
     /**
      * 处理拼接（可以和format共存，比如Double类型，可以先format为两位小数，后在拼接）

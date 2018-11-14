@@ -120,7 +120,7 @@ public class ReflectionUtil {
             String mergeTo = "";
             String separator = exportField.separator();
             String string = exportField.string();
-            int[] tags = exportField.tags();
+            int[] group = exportField.group();
             int order = exportField.order();
             int width = exportField.width() == 0 ? 0 :(int)((exportField.width()+0.60)*256);
             HorizontalAlignment align = exportField.align();
@@ -130,7 +130,7 @@ public class ReflectionUtil {
             Method getMethod = pd.getReadMethod();
             //创建Field信息对象 TODO mergeTO后续完善
             ExcelFieldInfo fieldInfo = new ExcelFieldInfo(name, order, format, width, defaultValue, getMethod, mergeTo,
-                    separator, string, tags, align);
+                    separator, string, group, align);
             fieldInfoList.add(fieldInfo);
         }
         //设置排序
