@@ -36,7 +36,11 @@
 	private int loanTerm;
     
     注解说明：
-    name表示列名,format表示格式化,order表示列的排列顺序，tags表示分组导出（比如你这个类需要根据在不同的需求里导出的字段不同，那么可以根据tags分组导出）
+    name表示列名,format表示格式化,defaultValue表示设置替代默认值,string拼接替代字符串，
+    order表示列的排列顺序，tags表示分组导出（比如你这个类需要根据在不同的需求里导出的字段不同，
+    那么可以根据tags分组导出）
+    algin调整列的居左居中居右位置，width设置好列宽美化展示
+    ExcelField为字段列名注解 ExcelSheet为sheet表格注解
 ```
 ### 导出excel
 
