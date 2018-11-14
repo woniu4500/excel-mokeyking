@@ -35,6 +35,8 @@
     @ExcelField(name = "贷款期数",string = "共{{value}}期")
 	private int loanTerm;
     
+    注解说明：
+    name表示列名,format表示格式化,order表示列的排列顺序，tags表示分组导出（比如你这个类需要根据在不同的需求里导出的字段不同，那么可以根据tags分组导出）
 ```
 ### 导出excel
 
