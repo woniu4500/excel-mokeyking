@@ -113,8 +113,17 @@ public class ExcelImportUtil {
         CellType cellType = cell.getCellTypeEnum();
         switch (fieldClass) {
             case "class java.lang.String":
-                cell.setCellType(CellType.STRING);
-                String cellValue = cell.getStringCellValue();
+            	String cellValue;
+                if (CellType.NUMERIC == cellType) {
+                    //避免科学计数
+                    DecimalFormat df = new DecimalFormat("#.########");
+                    // 取得当前Cell的数值
+                    cellValue = String.valueOf(df.format(cell.getNumericCellValue()));
+                }else {
+                    cell.setCellType(CellType.STRING);
+                    cellValue = cell.getStringCellValue();
+                }
+
                 if (StringUtils.isNotEmpty(cellValue)) {
                     cellValue = cellValue.trim();
                 }
